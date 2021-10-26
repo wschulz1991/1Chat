@@ -124,62 +124,8 @@ class _ChatMainWidgetState extends State<ChatMainWidget> {
                           itemBuilder: (context, listViewIndex) {
                             final listViewChatsRecord =
                                 listViewChatsRecordList[listViewIndex];
-                            return FutureBuilder<UsersRecord>(
-                              future: () async {
-                                final chatUserRef = FFChatManager.instance
-                                    .getChatUserRef(currentUserReference,
-                                        listViewChatsRecord);
-                                return UsersRecord.getDocument(chatUserRef)
-                                    .first;
-                              }(),
-                              builder: (context, snapshot) {
-                                final chatUser = snapshot.data;
-                                return FFChatPreview(
-                                  onTap: chatUser != null
-                                      ? () => Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ChatDetailsWidget(
-                                                chatUser: chatUser,
-                                              ),
-                                            ),
-                                          )
-                                      : null,
-                                  lastChatText: listViewChatsRecord.lastMessage,
-                                  lastChatTime:
-                                      listViewChatsRecord.lastMessageTime,
-                                  seen: listViewChatsRecord.lastMessageSeenBy
-                                      .contains(currentUserReference),
-                                  userName: chatUser?.displayName ?? '',
-                                  userProfilePic: chatUser?.photoUrl ?? '',
-                                  color: FlutterFlowTheme.dark900,
-                                  unreadColor: FlutterFlowTheme.tertiary,
-                                  titleTextStyle: GoogleFonts.getFont(
-                                    'Lexend Deca',
-                                    color: FlutterFlowTheme.tertiaryColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                  dateTextStyle: GoogleFonts.getFont(
-                                    'Lexend Deca',
-                                    color: FlutterFlowTheme.grayIcon,
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 14,
-                                  ),
-                                  previewTextStyle: GoogleFonts.getFont(
-                                    'Lexend Deca',
-                                    color: FlutterFlowTheme.grayIcon,
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 14,
-                                  ),
-                                  contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
-                                          8, 3, 8, 3),
-                                  borderRadius: BorderRadius.circular(0),
-                                );
-                              },
-                            );
+                            return Container(
+                                /* Chat page requires Firebase Auth and Firestore */);
                           },
                         ),
                       );

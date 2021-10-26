@@ -1,10 +1,8 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/upload_media.dart';
 import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -73,40 +71,15 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
               alignment: AlignmentDirectional(0, 0),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                child: InkWell(
-                  onTap: () async {
-                    final selectedMedia = await selectMedia(
-                      maxWidth: 1000.00,
-                      maxHeight: 1000.00,
-                      mediaSource: MediaSource.photoGallery,
-                    );
-                    if (selectedMedia != null &&
-                        validateFileFormat(
-                            selectedMedia.storagePath, context)) {
-                      showUploadMessage(context, 'Uploading file...',
-                          showLoading: true);
-                      final downloadUrl = await uploadData(
-                          selectedMedia.storagePath, selectedMedia.bytes);
-                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                      if (downloadUrl != null) {
-                        setState(() => uploadedFileUrl = downloadUrl);
-                        showUploadMessage(context, 'Success!');
-                      } else {
-                        showUploadMessage(context, 'Failed to upload media');
-                        return;
-                      }
-                    }
-                  },
-                  child: Container(
-                    width: 80,
-                    height: 80,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: Image.asset(
-                      'assets/images/uiAvatar@2x.png',
-                    ),
+                child: Container(
+                  width: 80,
+                  height: 80,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.asset(
+                    'assets/images/uiAvatar@2x.png',
                   ),
                 ),
               ),

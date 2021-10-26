@@ -1,10 +1,8 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/upload_media.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -104,47 +102,17 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           child: Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: InkWell(
-                              onTap: () async {
-                                final selectedMedia = await selectMedia(
-                                  maxWidth: 1000.00,
-                                  maxHeight: 1000.00,
-                                  mediaSource: MediaSource.photoGallery,
-                                );
-                                if (selectedMedia != null &&
-                                    validateFileFormat(
-                                        selectedMedia.storagePath, context)) {
-                                  showUploadMessage(
-                                      context, 'Uploading file...',
-                                      showLoading: true);
-                                  final downloadUrl = await uploadData(
-                                      selectedMedia.storagePath,
-                                      selectedMedia.bytes);
-                                  ScaffoldMessenger.of(context)
-                                      .hideCurrentSnackBar();
-                                  if (downloadUrl != null) {
-                                    setState(
-                                        () => uploadedFileUrl = downloadUrl);
-                                    showUploadMessage(context, 'Success!');
-                                  } else {
-                                    showUploadMessage(
-                                        context, 'Failed to upload media');
-                                    return;
-                                  }
-                                }
-                              },
-                              child: Container(
-                                width: 80,
-                                height: 80,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.network(
-                                  valueOrDefault<String>(
-                                    editProfileUsersRecord.photoUrl,
-                                    'https://img-premium.flaticon.com/png/512/4886/premium/4886318.png?token=exp=1629155806~hmac=8593bfc502d7901620d7bf8031966c83',
-                                  ),
+                            child: Container(
+                              width: 80,
+                              height: 80,
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.network(
+                                valueOrDefault<String>(
+                                  editProfileUsersRecord.photoUrl,
+                                  'https://img-premium.flaticon.com/png/512/4886/premium/4886318.png?token=exp=1629155806~hmac=8593bfc502d7901620d7bf8031966c83',
                                 ),
                               ),
                             ),
@@ -157,42 +125,40 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     20, 12, 20, 0),
-                                child: AuthUserStreamWidget(
-                                  child: TextFormField(
-                                    controller: textController1,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'Email Address',
-                                      labelStyle:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Lexend Deca',
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      filled: true,
-                                      fillColor: Color(0xFF3124A1),
-                                      contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              16, 24, 16, 24),
-                                    ),
-                                    style: FlutterFlowTheme.bodyText1.override(
+                                child: TextFormField(
+                                  controller: textController1,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'Email Address',
+                                    labelStyle:
+                                        FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Lexend Deca',
-                                      color: FlutterFlowTheme.tertiaryColor,
                                     ),
-                                    keyboardType: TextInputType.emailAddress,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    filled: true,
+                                    fillColor: Color(0xFF3124A1),
+                                    contentPadding:
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            16, 24, 16, 24),
                                   ),
+                                  style: FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: FlutterFlowTheme.tertiaryColor,
+                                  ),
+                                  keyboardType: TextInputType.emailAddress,
                                 ),
                               ),
                             )

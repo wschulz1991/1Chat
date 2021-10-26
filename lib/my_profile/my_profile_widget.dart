@@ -1,13 +1,10 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
 import '../change_password/change_password_widget.dart';
 import '../edit_profile/edit_profile_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/upload_media.dart';
-import '../login/login_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -71,52 +68,17 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 160, 0, 0),
-                                      child: InkWell(
-                                        onTap: () async {
-                                          final selectedMedia =
-                                              await selectMedia(
-                                            maxWidth: 1000.00,
-                                            maxHeight: 1000.00,
-                                            mediaSource:
-                                                MediaSource.photoGallery,
-                                          );
-                                          if (selectedMedia != null &&
-                                              validateFileFormat(
-                                                  selectedMedia.storagePath,
-                                                  context)) {
-                                            showUploadMessage(
-                                                context, 'Uploading file...',
-                                                showLoading: true);
-                                            final downloadUrl =
-                                                await uploadData(
-                                                    selectedMedia.storagePath,
-                                                    selectedMedia.bytes);
-                                            ScaffoldMessenger.of(context)
-                                                .hideCurrentSnackBar();
-                                            if (downloadUrl != null) {
-                                              setState(() => uploadedFileUrl =
-                                                  downloadUrl);
-                                              showUploadMessage(
-                                                  context, 'Success!');
-                                            } else {
-                                              showUploadMessage(context,
-                                                  'Failed to upload media');
-                                              return;
-                                            }
-                                          }
-                                        },
-                                        child: Container(
-                                          width: 80,
-                                          height: 80,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: CachedNetworkImage(
-                                            imageUrl: valueOrDefault<String>(
-                                              myProfileUsersRecord.photoUrl,
-                                              'https://image.flaticon.com/icons/png/512/599/599305.png',
-                                            ),
+                                      child: Container(
+                                        width: 80,
+                                        height: 80,
+                                        clipBehavior: Clip.antiAlias,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: CachedNetworkImage(
+                                          imageUrl: valueOrDefault<String>(
+                                            myProfileUsersRecord.photoUrl,
+                                            'https://image.flaticon.com/icons/png/512/599/599305.png',
                                           ),
                                         ),
                                       ),
@@ -329,20 +291,8 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FFButtonWidget(
-                            onPressed: () async {
-                              setState(() => _loadingButton = true);
-                              try {
-                                await signOut();
-                                await Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginWidget(),
-                                  ),
-                                  (r) => false,
-                                );
-                              } finally {
-                                setState(() => _loadingButton = false);
-                              }
+                            onPressed: () {
+                              print('Button pressed ...');
                             },
                             text: 'Log Out',
                             options: FFButtonOptions(

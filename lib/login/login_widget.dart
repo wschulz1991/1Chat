@@ -1,4 +1,3 @@
-import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -191,15 +190,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                   onPressed: () async {
                     setState(() => _loadingButton1 = true);
                     try {
-                      final user = await signInWithEmail(
-                        context,
-                        emailTextController.text,
-                        passwordTextController.text,
-                      );
-                      if (user == null) {
-                        return;
-                      }
-
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -322,10 +312,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                     onPressed: () async {
                       setState(() => _loadingButton4 = true);
                       try {
-                        final user = await signInAnonymously(context);
-                        if (user == null) {
-                          return;
-                        }
                         await Navigator.push(
                           context,
                           PageTransition(

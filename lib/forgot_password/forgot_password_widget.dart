@@ -1,4 +1,3 @@
-import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -123,20 +122,6 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                 onPressed: () async {
                   setState(() => _loadingButton = true);
                   try {
-                    if (emailAddressController.text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Email required!',
-                          ),
-                        ),
-                      );
-                      return;
-                    }
-                    await resetPassword(
-                      email: emailAddressController.text,
-                      context: context,
-                    );
                     Navigator.pop(context);
                   } finally {
                     setState(() => _loadingButton = false);

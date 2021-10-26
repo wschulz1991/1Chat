@@ -1,4 +1,3 @@
-import '../auth/auth_util.dart';
 import '../complete_profile/complete_profile_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -257,27 +256,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   onPressed: () async {
                     setState(() => _loadingButton1 = true);
                     try {
-                      if (passwordController.text !=
-                          confirmPasswordController.text) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              "Passwords don't match!",
-                            ),
-                          ),
-                        );
-                        return;
-                      }
-
-                      final user = await createAccountWithEmail(
-                        context,
-                        emailAddressController.text,
-                        passwordController.text,
-                      );
-                      if (user == null) {
-                        return;
-                      }
-
                       await Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
